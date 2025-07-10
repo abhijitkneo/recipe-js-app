@@ -1,0 +1,10 @@
+
+@use './custom/variables' as *;
+@use 'bootstrap' as * with (
+    $primary: $primary,
+    $secondary: $secondary,
+    $card-border-color: $card-border-color,
+    $box-shadow-sm: $box-shadow-sm
+);
+
+@use './custom/common';
