@@ -1,19 +1,22 @@
 const recipeListContainer = document.getElementById('recipes');
 
-//get data without using async await
-function getRecipes() {
+//get data using async await
+async function getRecipes() {
     const apiUrl = "https://dummyjson.com/recipes";
-    
-    fetch(apiUrl)
-    .then(response => {
+    const recipeContainer = document.getElementById('recipes');
+    const loader = document.getElementById('loader');
+
+    try {
+        loader.style.display = 'block';
+        recipeContainer.style.display = 'none';
+
+        const response = await fetch(apiUrl);
         if(!response.ok) {
-            throw new Error('Error fetching API');
+            throw new Error('Error while fetching data');
         }
-        return response.json()
-    })
-    .then(data => {
+        const data = await response.json();
         console.log(data);
-        const recipeContainer = document.getElementById('recipes');
+        
         recipeContainer.innerHTML = '';
 
         data.recipes.forEach(recipe => {
@@ -42,11 +45,14 @@ function getRecipes() {
             `;
 
             recipeContainer.appendChild(recipeCard);
-        });
-    })
-    .catch(error => {
-        console.log("Fetch Error", error);
-    });
+        })
+    } catch(error) {
+        console.log(error);
+        recipeContainer.innerHTML = `<p class="m-0 text-danger">Failed to load recipes.</p>`        
+    } finally {
+        loader.style.display = 'none';
+        recipeContainer.style.display = 'flex';
+    }
 }
 
 
