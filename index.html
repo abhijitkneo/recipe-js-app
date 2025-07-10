@@ -44,6 +44,16 @@
 
         <section class="recipe-list mt-4">
             <div class="container-xxl px-0">
+                <div class="filter mb-3">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <input type="search" id="searchInput" class="form-control shadow-none" placeholder="Search Recipes with Name or Cuisine ...">
+                        </div>
+                        <div class="col-md-5 align-self-center">
+                            <span id="recipe-count" class="flex-shrink-0"></span>
+                        </div>
+                    </div>
+                </div>
                 <div id="loader" class="text-center">
                     <div class="spinner-grow" role="status">
                         <span class="visually-hidden">Loading...</span>
