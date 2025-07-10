@@ -1,10 +1,9 @@
 const recipeListContainer = document.getElementById('recipes');
-const apiUrl = "https://dummyjson.com/recipes";
-
 
 //get data without using async await
 function getRecipes() {
-
+    const apiUrl = "https://dummyjson.com/recipes";
+    
     fetch(apiUrl)
     .then(response => {
         if(!response.ok) {
