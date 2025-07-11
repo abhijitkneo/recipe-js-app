@@ -1,4 +1,5 @@
-const recipeListContainer = document.getElementById('recipes');
+const cuisineSelect = document.getElementById('cuisineSelect');
+
 let allRecipes = [];
 
 
@@ -20,6 +21,18 @@ async function getRecipes() {
         console.log(data);
         
         allRecipes = data.recipes;
+
+        //get unique cuisines dropdown
+        const cuisines = [...new Set(allRecipes.map(r => r.cuisine))];
+        cuisines.sort();
+
+        cuisines.forEach(cuisine => {
+            const option = document.createElement('option');
+            option.value = cuisine.toLowerCase();
+            option.textContent = cuisine;
+            cuisineSelect.appendChild(option);
+        });
+
         renderRecipies(allRecipes);
         
     } catch (error) {
@@ -78,19 +91,38 @@ function renderRecipies(recipes) {
 const searchInput = document.getElementById('searchInput');
 searchInput.addEventListener('input', function() {
     const searchTerm = this.value.toLowerCase();
-
-    const filteredRecipes = allRecipes.filter(recipe => {
+    const selectedCuisine = cuisineSelect.value.toLowerCase(); 
+    
+    const filtered = allRecipes.filter(recipe => {
         const nameMatch = recipe.name.toLowerCase().includes(searchTerm);
-        const cuisineMatch = recipe.cuisine.toLowerCase().includes(searchTerm);
+        const cuisineMatch = selectedCuisine === 'all' || recipe.cusine.toLowerCase() === selectedCuisine;
+        const cusineSearchMatch = recipe.cuisine.toLowerCase().includes(searchTerm);
         //const tagMatch = recipe.tags.some(tg => tg.toLowerCase().includes(searchTerm));
         //const ingredientsMatch = recipe.ingredients.some(ing => ing.toLowerCase().includes(searchTerm));
-        return nameMatch || cuisineMatch;
+        return cuisineMatch && (nameMatch || cusineSearchMatch);
     })
 
-    console.log('Filtered Recipes', filteredRecipes);
+    console.log('Filtered Recipes', filtered);
     
 
-    renderRecipies(filteredRecipes);
+    renderRecipies(filtered);
+});
+
+//handle cuisine dropdown
+cuisineSelect.addEventListener('change', function() {
+    const selectedCuisine = this.value.toLowerCase();
+    const searchTerm = searchInput.value.toLowerCase();
+
+    const filtered = allRecipes.filter(recipe => {
+        const cusineMatch = selectedCuisine === 'all' || recipe.cuisine.toLowerCase() === selectedCuisine;
+        const nameMatch = recipe.name.toLowerCase().includes(searchTerm);
+
+        return cusineMatch && nameMatch;
+    })
+
+    
+
+    renderRecipies(filtered)
 })
 
 
