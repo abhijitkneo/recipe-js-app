@@ -11982,3 +11982,17 @@ a {
 .recipe-list .recipe-thumb {
   height: 200px;
 }
+
+.recipe-details {
+  width: 100vw;
+  left: -3rem;
+}
+.recipe-details::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 225px;
+  background: #F4F4F5;
+  top: 0;
+  left: 0;
+}

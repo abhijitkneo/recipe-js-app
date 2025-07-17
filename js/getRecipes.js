@@ -1,10 +1,9 @@
 const cuisineSelect = document.getElementById('cuisineSelect');
-
+const apiUrl = "https://dummyjson.com/recipes";
 let allRecipes = [];
 
 
 async function getRecipes() {
-    const apiUrl = "https://dummyjson.com/recipes";
     const recipeContainer = document.getElementById('recipes');
     const loader = document.getElementById('loader');
 
@@ -57,7 +56,7 @@ function renderRecipies(recipes) {
         return;
     }
 
-    recipes.forEach(recipe => {
+    recipes.slice(0, 8).forEach(recipe => {
         const recipeCard = document.createElement('div');
         recipeCard.classList.add('col-md-3');
 
@@ -65,8 +64,10 @@ function renderRecipies(recipes) {
             <div class="card shadow-sm rounded-4 mb-4">
                 <div class="card-body p-2">
                     <figure class="recipe-thumb rounded-4 overflow-hidden d-flex align-items-center jusitfy-content-center position-relative">
-                        <img src="${recipe.image}" alt="${recipe.name}" class="img-fluid">
-                        <span class="position-absolute top-0 end-0 me-2 mt-2 bg-secondary border shadow-sm text-white small rounded-pill px-2">${recipe.cuisine}</span>
+                        <a href="${'single-recipe.html?id='+recipe.id}" class="d-block">
+                            <img src="${recipe.image}" alt="${recipe.name}" class="img-fluid">
+                            <span class="position-absolute top-0 end-0 me-2 mt-2 bg-secondary border shadow-sm text-white small rounded-pill px-2">${recipe.cuisine}</span>
+                        </a>
                     </figure>
                     <div class="recipe-quick-info px-3 pb-3">
                         <p class="mb-0 text-black-50">${recipe.mealType.join(', ')}</p>
@@ -92,7 +93,7 @@ const searchInput = document.getElementById('searchInput');
 searchInput.addEventListener('input', function() {
     const searchTerm = this.value.toLowerCase();
     const selectedCuisine = cuisineSelect.value.toLowerCase(); 
-    
+
     const filtered = allRecipes.filter(recipe => {
         const nameMatch = recipe.name.toLowerCase().includes(searchTerm);
         const cuisineMatch = selectedCuisine === 'all' || recipe.cusine.toLowerCase() === selectedCuisine;

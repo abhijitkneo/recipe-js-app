@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Details</title>
+
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <main class="px-5">
+        <header class="py-3">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="logo">
+                        <img src="images/logo.svg" alt="">
+                    </div>
+                </div>
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <div class="main-nav d-flex justify-content-end">
+                        <ul class="list-unstyled d-flex align-items-center gap-3 m-0 ms-auto">
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="#">Explore</a></li>
+                            <li><a href="#">Help</a></li>
+                            <li class="ms-5">
+                                <a href="#">
+                                    <img src="images/user-avatar.png" alt="">
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div id="loader" class="text-center position-absolute top-50 start-50 translate-middle">
+            <div class="spinner-grow" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+
+        <section class="recipe-details position-relative pt-5">
+            <div class="container-xxl px-0 position-relative">
+                <div class="row">
+                    <div class="col-md-4 col-12">
+                        <figure>
+                            <img src="images/recipe-placeholder.png" id="recipeImage" class="img-fluid rounded-4" alt="">
+                        </figure>
+                    </div>
+                    <div class="col-md-8 col-12">
+                        <p class="d-flex align-items-center justify-content-between m-0 text-secondary">
+                            <span id="mealType" class="fw-medium">Meal Type</span>
+                            <span>
+                                <i class="bi bi-star-fill"></i>
+                                <span id="recipeRatings">5</span>
+                            </span>
+                        </p>
+                        <h1 class="fw-semibold" id="recipeName">Recipe Name</h1>
+
+                        <div class="row mt-3">
+                            <div class="col-md-2">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-clock small text-black-50"></i> <span class="fw-semibold" id="cookingTime">time</span>
+                                </div>
+                                <p class="m-0 small fw-medium text-black-50">Cooking Time</p>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-globe2 small text-black-50"></i> <span class="fw-semibold" id="cuisineType">cuisine</span>
+                                </div>
+                                <p class="m-0 small fw-medium text-black-50">Cuisine</p>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-fork-knife small text-black-50"></i> <span class="fw-semibold" id="servingTo">serving</span>
+                                </div>
+                                <p class="m-0 small fw-medium text-black-50">Serving</p>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-app-indicator small text-black-50"></i> <span class="fw-semibold" id="difficultyLevel">difficulty</span>
+                                </div>
+                                <p class="m-0 small fw-medium text-black-50">Difficulty</p>
+                            </div>
+                        </div>
+                        <div class="row mt-4 pt-5">
+                            <div class="col-12">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="bi bi-tags fs-5"></i>
+                                    <ul id="tags" class="list-unstyled d-flex align-items-center gap-2 m-0"></ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-4 border-top pt-4">
+                            <div class="col-12">
+                                <h4 class="mb-3 d-flex align-items-center gap-3">
+                                    <img src="images/ingredients.svg" alt="" style="width: 32px;">Ingredients
+                                </h4>
+                                <ul id="ingredientList" class="list-unstyled d-flex align-items-center flex-wrap gap-2 m-0"></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row my-4">
+                    <div class="col-12">
+                        <h4 class="mb-3 d-flex align-items-center gap-3">
+                            <img src="images/chef-hat.svg" alt="" style="width: 32px;">Directions
+                        </h4>
+                        <ul id="instructions" class="list-unstyled d-flex flex-column gap-2 m-0">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/getRecipeDetails.js"></script>
+</body>
+</html>
