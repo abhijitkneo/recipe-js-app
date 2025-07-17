@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Recepies</title>
+
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <main class="px-5">
+        <header class="py-3">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="logo">
+                        <img src="images/logo.svg" alt="">
+                    </div>
+                </div>
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <div class="main-nav d-flex justify-content-end">
+                        <ul class="list-unstyled d-flex align-items-center gap-3 m-0 ms-auto">
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="#">Explore</a></li>
+                            <li><a href="#">Help</a></li>
+                            <li class="ms-5">
+                                <a href="#">
+                                    <img src="images/user-avatar.png" alt="">
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section class="recipe-details position-relative pt-5">
+            <div class="recipe-list position-relative">
+                <div class="container-xxl px-0">
+                    <h1 class="mb-4">Explore Recipes</h1>
+                    <div class="filter mb-3">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <input type="search" id="searchInput" class="form-control shadow-none" placeholder="Search Recipes with Name or Cuisine ...">
+                            </div>
+                            <div class="col-md-3 align-self-center">
+                                <span id="recipe-count" class="flex-shrink-0"></span>
+                            </div>
+                            <div class="col-md-4 text-end">
+                                <select id="cuisineSelect" class="form-select">
+                                    <option value="all">All Cuisines</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="loader" class="text-center">
+                        <div class="spinner-grow" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                    <div class="row" id="recipes"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/exploreRecipe.js"></script>
+</body>
+</html>
